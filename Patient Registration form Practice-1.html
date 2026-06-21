@@ -1,0 +1,341 @@
+<!--
+Program Name: patient-form.html
+Author: Shaheer Ali
+Date Created: 06/12/2026
+Date Last Edited: 06/16/2026
+Version: 1.0
+Description: Patient Registration Form for MIS 3371 Homework 1
+-->
+
+<!DOCTYPE html>
+<html lang=    "en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Quick and Pure Medical Patient Registration</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- === HEADER === -->
+
+    <div id="banner">
+
+       <!-- <img src="logo.png" alt="Quick and Pure Logo" width="90"> -->
+
+       <img src="logo.png" alt="Quick and Pure Medical Logo" width="220">
+
+
+        <h1>Quick and Pure Medical Center</h1>
+
+        <h3>Patient Registration Form</h3>
+
+        <p>
+            Today is:
+            <script> 
+                let text = new Date().toLocaleDateString('en-CA');
+               document.write(text);  
+                </script>
+        </p>
+
+    </div>
+
+    <hr>
+
+    <!-- === FORM === -->
+
+    <form action="thankyou.html" style="background-color: rgb(10, 173, 119);">
+
+        <table>
+
+            <tr>
+                <td><label>First Name</label></td>
+                <td><input type="text" maxlength="30"></td>
+
+                <td><label>Middle Initial</label></td>
+                <td><input type="text" maxlength="1" size="1"></td>
+
+                <td><label>Last Name</label></td>
+                <td><input type="text" maxlength="30"></td>
+            </tr>
+
+            <tr>
+                <td>Date of Birth</td>
+                <td><input type="date"></td>
+
+                <td>Social Security</td>
+                <td colspan="3"><input type="password" maxlength="11"></td>
+            </tr>
+
+            <tr>
+                <td>Address Line 1</td>
+                <td colspan="5">
+                    <input type="text" maxlength="30" size="60">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Address Line 2</td>
+                <td colspan="5">
+                    <input type="text" maxlength="30" size="60">
+                </td>
+            </tr>
+
+            <tr>
+
+                <td>City</td>
+
+                <td><input type="text" maxlength="30"></td>
+
+                <td>State</td>
+
+                <td>
+
+                    <select>
+
+                        <option>AL</option>
+                        <option>AK</option>
+                        <option>AZ</option>
+                        <option>AR</option>
+                        <option>CA</option>
+                        <option>CO</option>
+                        <option>CT</option>
+                        <option>DC</option>
+                        <option>DE</option>
+                        <option>FL</option>
+                        <option>GA</option>
+                        <option>HI</option>
+                        <option>ID</option>
+                        <option>IL</option>
+                        <option>IN</option>
+                        <option>IA</option>
+                        <option>KS</option>
+                        <option>KY</option>
+                        <option>LA</option>
+                        <option>ME</option>
+                        <option>MD</option>
+                        <option>MA</option>
+                        <option>MI</option>
+                        <option>MN</option>
+                        <option>MS</option>
+                        <option>MO</option>
+                        <option>MT</option>
+                        <option>NE</option>
+                        <option>NV</option>
+                        <option>NH</option>
+                        <option>NJ</option>
+                        <option>NM</option>
+                        <option>NY</option>
+                        <option>NC</option>
+                        <option>ND</option>
+                        <option>OH</option>
+                        <option>OK</option>
+                        <option>OR</option>
+                        <option>PA</option>
+                        <option>PR</option>
+                        <option>RI</option>
+                        <option>SC</option>
+                        <option>SD</option>
+                        <option>TN</option>
+                        <option>TX</option>
+                        <option>UT</option>
+                        <option>VT</option>
+                        <option>VA</option>
+                        <option>WA</option>
+                        <option>WV</option>
+                        <option>WI</option>
+                        <option>WY</option>
+                
+                    </select>
+
+                </td>
+
+                <td>Zip Code</td>
+
+                <td><input type="text" maxlength="10"></td>
+
+            </tr>
+
+            <tr>
+
+                <td>Phone Number</td>
+
+                <td><input type="tel"></td>
+
+                <td>Email Address</td>
+
+                <td colspan="3"><input type="email" size="40"></td>
+
+            </tr>
+
+            <tr>
+
+                <td>Current Symptoms</td>
+
+                <td colspan="5">
+
+                    <textarea rows="4" cols="55"></textarea>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <br>
+
+        <h3>Allergies (Check all that apply)</h3>
+
+        <input type="checkbox"> Penicillin
+        <input type="checkbox"> Latex
+        <input type="checkbox"> Peanuts
+        <input type="checkbox"> Shellfish
+        <input type="checkbox"> Other
+
+        <input type="text" placeholder="Specify other allergy">
+
+        <br><br>
+
+        <h3>Medical History</h3>
+
+        <input type="checkbox"> Chicken Pox
+
+        <input type="checkbox"> Measles
+
+        <input type="checkbox"> COVID-19
+
+        <input type="checkbox"> Smallpox
+
+        <input type="checkbox"> Tetanus
+
+        <br><br>
+
+        <h3>Gender</h3>
+
+        <input type="radio" name="gender"> Male
+
+        <input type="radio" name="gender"> Female
+
+        <input type="radio" name="gender"> Other
+
+        <br><br>
+
+        <h3>Vaccinated?</h3>
+
+        <input type="radio" name="vaccinated"> Yes
+
+        <input type="radio" name="vaccinated"> No
+
+        <br><br>
+
+        <h3>Do you have Insurance?</h3>
+
+        <input type="radio" name="insurance"> Yes
+
+        <input type="radio" name="insurance"> No
+
+        <br><br>
+
+        <h3>Emergency Contact</h3>
+
+        Name
+
+        <input type="text" maxlength="50">
+
+        Phone
+
+        <input type="tel">
+
+        <br><br>
+
+        <h3>Health Rating</h3>
+
+        Poor
+
+        <input type="range" min="1" max="10">
+
+        Excellent
+
+        <br><br>
+
+        <table>
+
+            <tr>
+
+                <td>User ID</td>
+
+                <td>
+
+                    <input type="text" maxlength="20">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Password</td>
+
+                <td>
+
+                    <input type="password" maxlength="20">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Confirm Password</td>
+
+                <td>
+
+                    <input type="password" maxlength="20">
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <br>
+
+        <input type="reset" value="CLEAR AND START OVER">
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+    <br>
+    <hr>
+
+    <!-- === FOOTER === -->
+
+    <div id="footer">
+
+        <h3>Quick and Pure Medical Center</h3>
+
+        <p>
+            PO Box 12231<br>
+            Stafford, TX 77477
+        </p>
+
+        <button>Contact Us</button>
+
+        <br><br>
+
+        <a href="#">Facebook</a> |
+        <a href="#">Instagram</a> |
+        <a href="#">Twitter</a>
+
+    </div>
+
+    <!-- End of patient-form.html -->
+
+</body>
+
+</html>
