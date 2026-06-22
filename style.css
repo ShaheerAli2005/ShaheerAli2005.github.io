@@ -1,0 +1,22 @@
+.header { 
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: left;
+
+    background-color: #DAE8FC; 
+    padding: 10px;
+    border-radius: 10px;
+
+    & .logo {
+        justify-content: right;
+
+    }
+
+}
+
+
+.footer {
+        background-color: #DAE8FC; 
+
+}

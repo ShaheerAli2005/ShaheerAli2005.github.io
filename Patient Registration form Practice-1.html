@@ -26,21 +26,32 @@ Description: Patient Registration Form for MIS 3371 Homework 1
     <div id="banner">
 
        <!-- <img src="logo.png" alt="Quick and Pure Logo" width="90"> -->
+        <div class="header"> 
+            <div>
+             <span>
+                <h1>Quick and Pure Medical Center</h1>
 
-       <img src="logo.png" alt="Quick and Pure Medical Logo" width="220">
+                <h3>Patient Registration Form</h3>
+
+                <p>
+                    Today is:
+                    <script> 
+                        let text = new Date().toLocaleDateString('en-US');
+                    document.write(text);  
+                        </script>
+                </p>
+             </span>
+
+            </div>
+            <div class="logo">
+                <img src="logo.jpg" width="500px" height="300px" alt="Quick and Pure Medical Logo">
+            </div>            
+             
+        </div>
+      
 
 
-        <h1>Quick and Pure Medical Center</h1>
 
-        <h3>Patient Registration Form</h3>
-
-        <p>
-            Today is:
-            <script> 
-                let text = new Date().toLocaleDateString('en-CA');
-               document.write(text);  
-                </script>
-        </p>
 
     </div>
 
@@ -315,7 +326,7 @@ Description: Patient Registration Form for MIS 3371 Homework 1
 
     <!-- === FOOTER === -->
 
-    <div id="footer">
+    <div id="footer" class="footer">
 
         <h3>Quick and Pure Medical Center</h3>
 
