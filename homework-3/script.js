@@ -146,38 +146,84 @@ function reviewForm() {
         "*".repeat(password.length);
 }
 
+function validateFirstName() {
+    const first = document.getElementById("fname").value.trim();
+
+    const firstRegex = /^[A-Za-z'-]{1,30}$/;
+
+
+    clearError("fnameError");
+
+
+    if (!firstRegex.test(first)) {
+        showError("fnameError", "At least 1 first name required. Letters, apostrophes, and dashes only.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateMiddleInitial() {
+    const middle = document.getElementById("mi").value.trim();
+    const middleRegex = /^[A-Za-z]?$/;
+
+    clearError("miError");
+
+    if (!middleRegex.test(middle)) {
+        showError("miError", "Middle initial must be blank or 1 letter only.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateLastName() {
+    const last = document.getElementById("lname").value.trim();
+    const lastRegex = /^[A-Za-z'-]*[2-5]?[A-Za-z'-]*$/;
+
+    clearError("lnameError");
+
+    if (last.length < 1 || last.length > 30 || !lastRegex.test(last)) {
+        showError("lnameError", "At least 1 last name required. Letters, apostrophes, dashes, and numbers 2-5 only.");
+        return false;
+    }
+
+    return true;
+}
 
 function validateNames() {
     let valid = true;
 
-    const first = document.getElementById("fname").value.trim();
-    const middle = document.getElementById("mi").value.trim();
-    const last = document.getElementById("lname").value.trim();
-
-    const firstRegex = /^[A-Za-z'-]{1,30}$/;
-    const middleRegex = /^[A-Za-z]?$/;
-    const lastRegex = /^[A-Za-z'-]*[2-5]?[A-Za-z'-]*$/;
-
-    clearError("fnameError");
-    clearError("miError");
-    clearError("lnameError");
-
-    if (!firstRegex.test(first)) {
-        showError("fnameError", "At least 1 first name required. Letters, apostrophes, and dashes only.");
-        valid = false;
-    }
-
-    if (!middleRegex.test(middle)) {
-        showError("miError", "Middle initial must be blank or 1 letter only.");
-        valid = false;
-    }
-
-    if (last.length < 1 || last.length > 30 || !lastRegex.test(last)) {
-        showError("lnameError", "At least 1 last name required. Letters, apostrophes, dashes, and numbers 2-5 only.");
-        valid = false;
-    }
+    if (!validateFirstName()) valid = false;
+    if (!validateMiddleInitial()) valid = false;
+    if (!validateLastName()) valid = false;
 
     return valid;
+}
+
+
+function formatPhone(fieldId) {
+
+    let phone = document.getElementById(fieldId).value;
+
+    // Remove everything except numbers
+    phone = phone.replace(/\D/g, "");
+
+    // Limit to 10 digits
+    phone = phone.substring(0, 10);
+
+    // Add dashes automatically
+    if (phone.length > 6) {
+        phone = phone.substring(0, 3) + "-" +
+                phone.substring(3, 6) + "-" +
+                phone.substring(6);
+    }
+    else if (phone.length > 3) {
+        phone = phone.substring(0, 3) + "-" +
+                phone.substring(3);
+    }
+
+    document.getElementById(fieldId).value = phone;
 }
 
 function validateDOB() {
@@ -208,6 +254,38 @@ function validateDOB() {
     return true;
 }
 
+function formatSSN() {
+
+    let ssn = document.getElementById("ssn").value;
+
+    // Remove everything except numbers
+    ssn = ssn.replace(/\D/g, "");
+
+    // Only allow 9 digits
+    ssn = ssn.substring(0, 9);
+
+    // Add dashes automatically
+    if (ssn.length > 5) {
+
+        ssn = ssn.substring(0,3) + "-" +
+              ssn.substring(3,5) + "-" +
+              ssn.substring(5);
+
+    }
+
+    else if (ssn.length > 3) {
+
+        ssn = ssn.substring(0,3) + "-" +
+              ssn.substring(3);
+
+    }
+
+    document.getElementById("ssn").value = ssn;
+}
+
+
+
+
 function validateSSN() {
     const ssn = document.getElementById("ssn").value.trim();
     clearError("ssnError");
@@ -224,6 +302,32 @@ function validateSSN() {
     return true;
 }
 
+
+
+
+function validatePhone(fieldId) {
+
+    let phone = document.getElementById(fieldId).value.trim();
+
+
+    clearError(fieldId + "Error");
+
+    // Check if phone number is blank
+    if (phone == "") {
+        showError(fieldId + "Error", "Phone number is required.");
+        return false;
+    }
+
+    // Check format 123-456-7890
+    let phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+
+    if (!phoneRegex.test(phone)) {
+        showError(fieldId + "Error", "Phone number must be in the format 123-456-7890.");
+        return false;
+    }
+
+    return true;
+}
 function validatePassword() {
 
     let password = document.getElementById("password").value;
@@ -273,6 +377,160 @@ function validatePassword() {
 
     return true;
 }
+function validateAddress(fieldId, errorId, required) {
+
+    let address = document.getElementById(fieldId).value.trim();
+
+    clearError(errorId);
+
+    // Required field check
+    if (required && address === "") {
+        showError(errorId, "Address Line 1 is required.");
+        return false;
+    }
+
+    // Address Line 2 can be blank
+    if (!required && address === "") {
+        return true;
+    }
+
+    // Length check
+    if (address.length < 2 || address.length > 30) {
+        showError(errorId, "Address must be between 2 and 30 characters.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateCity() {
+
+    let city = document.getElementById("city").value.trim();
+
+    clearError("cityError");
+
+    if (city === "") {
+        showError("cityError", "City is required.");
+        return false;
+    }
+
+    let cityRegex = /^[A-Za-z' -]{2,30}$/;
+
+    if (!cityRegex.test(city)) {
+        showError("cityError", "City must be 2-30 letters only.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateState() {
+
+    let state = document.getElementById("state").value;
+    clearError("stateError");
+
+    if (state == "") {
+        showError("stateError", "State is required.");
+        return false;
+    }
+
+    return true;
+}
+
+function numbersOnly(field) {
+
+    field.value = field.value.replace(/\D/g, "");
+
+}
+function validateZip() {
+
+    let zip = document.getElementById("zip").value.trim();
+
+    clearError("zipError");
+
+    // Required
+    if (zip === "") {
+        showError("zipError", "ZIP Code is required.");
+        return false;
+    }
+
+    // Must be exactly 5 digits
+    let zipRegex = /^\d{5}$/;
+
+    if (!zipRegex.test(zip)) {
+        showError("zipError", "ZIP Code must contain exactly 5 digits.");
+        return false;
+    }
+
+    return true;
+}
+function validateEmail() {
+    let email = document.getElementById("email").value.trim();
+    clearError("emailError");
+
+    if (email === "") {
+        showError("emailError", "Email is required.");
+        return false;
+    }
+
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        showError("emailError", "Please enter a valid email address.");
+        return false;
+    }
+
+    return true;
+}
+
+
+function validateUserID() {
+
+    let userid = document.getElementById("userid").value.trim();
+
+    clearError("useridError");
+
+    // Required
+    if (userid === "") {
+        showError("useridError", "User ID is required.");
+        return false;
+    }
+
+    // Length check
+    if (userid.length < 5 || userid.length > 20) {
+        showError("useridError", "User ID must be between 5 and 20 characters.");
+        return false;
+    }
+
+    // Cannot start with a number
+    if (/^[0-9]/.test(userid)) {
+        showError("useridError", "User ID cannot start with a number.");
+        return false;
+    }
+
+    // Only letters, numbers, dash and underscore
+    let userRegex = /^[A-Za-z][A-Za-z0-9_-]*$/;
+
+    if (!userRegex.test(userid)) {
+        showError("useridError", "Only letters, numbers, dash (-), and underscore (_) are allowed. No spaces.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateEmergencyName() {
+    let emergencyName = document.getElementById("emergencyName").value.trim();
+    clearError("emergencyNameError");
+
+    if (emergencyName === "") {
+        showError("emergencyNameError", "Emergency contact name is required.");
+        return false;
+    }
+
+    return true;
+}
+
 
 function validateForm() {
     let valid = true;
@@ -281,6 +539,18 @@ function validateForm() {
     if (!validateDOB()) valid = false;
     if (!validateSSN()) valid = false;
     if (!validatePassword()) valid = false;
+    if (!validatePhone("phone")) valid = false;
+    if (!validateAddress("address1", "address1Error", true)) valid = false;
+    if (!validateAddress("address2", "address2Error", false)) valid = false;
+    if (!validateCity()) valid = false;
+    if (!validateState()) valid = false;
+    if (!validateZip()) valid = false;
+    if (!validateEmail()) valid = false;
+    if (!validateUserID()) valid = false;
+    if (!validatePhone("emergencyPhone")) valid = false;
+    if (!validateEmergencyName()) valid = false;
+
+        
 
     if(valid) {
         alert("Form submitted successfully!");
