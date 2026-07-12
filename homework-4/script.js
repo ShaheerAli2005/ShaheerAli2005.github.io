@@ -1,5 +1,4 @@
 async function loadStates() {
-
     try {
         const response = await fetch("states.html");
 
@@ -7,203 +6,25 @@ async function loadStates() {
             throw new Error("The state list could not be loaded.");
         }
 
-        const stateOptions = await response.text();
+        const data = await response.text();
 
-        document.getElementById("state").innerHTML = stateOptions;
-    }
-
-    catch (error) {
+        document.getElementById("state").innerHTML = data;
+    } catch (error) {
         console.log(error);
 
         document.getElementById("state").innerHTML =
-            '<option value="">Error loading states</option>';
+            '<option value="">Error Loading States</option>';
     }
 }
 
 
-fetch("states.html")
-await response.text()
-innerHTML = stateOptions
 
 
-/*
-
-function setCookie(cookieName, cookieValue, hours) {
-
-    let expirationDate = new Date();
-
-    expirationDate.setTime(
-        expirationDate.getTime() + (hours * 60 * 60 * 1000)
-    );
-
-    document.cookie =
-        cookieName + "=" +
-        encodeURIComponent(cookieValue) +
-        "; expires=" + expirationDate.toUTCString() +
-        "; path=/";
-}
-
-
-function getCookie(cookieName) {
-
-    let name = cookieName + "=";
-
-    let decodedCookies =
-        decodeURIComponent(document.cookie);
-
-    let cookieList = decodedCookies.split(";");
-
-    for (let i = 0; i < cookieList.length; i++) {
-
-        let cookie = cookieList[i].trim();
-
-        if (cookie.indexOf(name) === 0) {
-
-            return cookie.substring(name.length);
-        }
-    }
-
-    return "";
-}
-
-
-function deleteCookie(cookieName) {
-
-    document.cookie =
-        cookieName +
-        "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-}
-
-
-function checkReturningUser() {
-
-    let firstName = getCookie("firstName");
-
-    if (firstName !== "") {
-
-        document.getElementById("welcomeMessage").textContent =
-            "Welcome back, " + firstName + "!";
-
-        document.getElementById("fname").value = firstName;
-
-        document.getElementById("newUserArea").style.display =
-            "block";
-
-        document.getElementById("newUserText").textContent =
-            "Not " + firstName +
-            "? Click here to start as a new user.";
-    }
-
-    else {
-
-        document.getElementById("welcomeMessage").textContent =
-            "Welcome New User";
-
-        document.getElementById("newUserArea").style.display =
-            "none";
-    }
-}
-
-function saveUserCookie() {
-
-    let rememberMe =
-        document.getElementById("rememberMe").checked;
-
-    let firstName =
-        document.getElementById("fname").value.trim();
-
-    if (rememberMe && firstName !== "") {
-
-        // Save cookie for 48 hours
-        setCookie("firstName", firstName, 48);
-
-        document.getElementById("welcomeMessage").textContent =
-            "Welcome back, " + firstName + "!";
-    }
-
-    else {
-
-        deleteCookie("firstName");
-    }
-}
-
-
-function rememberMeChanged() {
-
-    let rememberMe =
-        document.getElementById("rememberMe").checked;
-
-    if (rememberMe) {
-
-        saveUserCookie();
-    }
-
-    else {
-
-        deleteCookie("firstName");
-
-        document.getElementById("welcomeMessage").textContent =
-            "Welcome New User";
-    }
-}
-
-
-function startNewUser() {
-
-    deleteCookie("firstName");
-
-    // You will also clear local storage here later
-    localStorage.removeItem("patientFormData");
-
-    document.getElementById("patientForm").reset();
-
-    document.getElementById("welcomeMessage").textContent =
-        "Welcome New User";
-
-    document.getElementById("newUserArea").style.display =
-        "none";
-
-    document.getElementById("rememberMe").checked = true;
-
-    document.getElementById("newUserCheck").checked = false;
-}
-
-*/
 
 window.onload = function () {
-
+    updateSlider();
     loadStates();
 
-    updateSlider();
-
-    //checkReturningUser();
-
-
-    const today = new Date();
-    const maxDate = today.toISOString().split("T")[0];
-
-    const minDate = new Date();
-    minDate.setFullYear(today.getFullYear() - 120);
-
-    document.getElementById("dob").max = maxDate;
-    document.getElementById("dob").min =
-        minDate.toISOString().split("T")[0];
-};
-
-
-
-
-
-
-
-
-
-
-//I just changed the bottom to the top... all top is new
-
-
-/*window.onload = function () {
-    updateSlider();
 
     const today = new Date();
     const maxDate = today.toISOString().split("T")[0];
@@ -214,8 +35,6 @@ window.onload = function () {
     document.getElementById("dob").max = maxDate;
     document.getElementById("dob").min = minDate.toISOString().split("T")[0];
 };
-*/
-
 
 function showError(id, message) {
     const errorBox = document.getElementById(id);
@@ -755,8 +574,8 @@ function validateForm() {
     if (!validateUserID()) valid = false;
     if (!validatePhone("emergencyPhone")) valid = false;
     if (!validateEmergencyName()) valid = false;
-    
-  
+
+        
 
     if(valid) {
         alert("Form submitted successfully!");
@@ -764,5 +583,24 @@ function validateForm() {
     return valid;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
