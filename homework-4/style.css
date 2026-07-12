@@ -1,0 +1,47 @@
+.error-message {
+    display: none;
+    background-color: white;
+    color: #333;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-left: 8px;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    position: relative;
+}
+
+.error-message::before {
+    content: "!";
+    background-color: #f26c00;
+    color: white;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin-right: 8px;
+    border-radius: 2px;
+}
+
+.header { 
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: left;
+
+    background-color: #DAE8FC; 
+    padding: 10px;
+    border-radius: 10px;
+
+    & .logo {
+        justify-content: right;
+
+    }
+
+}
+
+
+
+.footer {
+        background-color: #DAE8FC; 
+
+}
+
